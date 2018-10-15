@@ -46,7 +46,7 @@ app.on('window-all-closed', () => {
 });
 
 // create window if app activated
-app.on('activated', () => {
+app.on('activate', () => {
     if (win === null) {
         createWindow();
     }

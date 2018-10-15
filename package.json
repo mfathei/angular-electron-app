@@ -3,17 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ng serve\" \"npm run electron\" ",
+    "start": "concurrently \"ng serve\" \"npm run electron-dev\" ",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prod": "./node_modules/electron/dist/electron ./dist/my-electron-app/electron.prod",
-    "electron": "./node_modules/electron/dist/electron ./src/electron.dev",
-    "package:win": "npm run build && cross-var electron-packager dist $npm_package_name-$npm_package_version --out=packages --platform=win32 --arch=all --overwrite ",
-    "package:linux": "npm run build && cross-var electron-packager dist $npm_package_name-$npm_package_version --out=packages --platform=linux --arch=all --overwrite ",
-    "package:osx": "npm run build && cross-var electron-packager dist $npm_package_name-$npm_package_version --out=packages --platform=darwin --arch=all --overwrite ",
-    "package:all": "npm run build && cross-var electron-packager dist $npm_package_name-$npm_package_version --out=packages --all --arch=all --overwrite "
+    "electron-prod": "ng build --prod --base-href=./ && ./node_modules/electron/dist/electron ./dist/my-electron-app/electron.prod",
+    "electron-dev": "./node_modules/electron/dist/electron ./src/electron.dev",
+    "electron-package": "ng build --prod --base-href=./ && electron-packager dist/my-electron-app --no-prune --out=packages --ignore=/node_modules --ignore=/e2e --ignore=/src --overwrite"
   },
   "private": true,
   "dependencies": {
